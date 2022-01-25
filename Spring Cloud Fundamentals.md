@@ -89,3 +89,12 @@ eureka:
         service-url:
             defaultZone: http://localhost:8761/eureka
 ```
+
+Para criar um <b>Client</b> basta fazer o mesmo processo do <b>Service</b>, porém com o registro desligado. Porquando o client não precisa se registrar, mas deve "descobrir" todos os serviços existentes.
+```
+eureka:
+    client:
+        register-with-eureka: false
+```
+
+# Fazer as anotações sobre 'The Application Client'
