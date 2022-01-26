@@ -15,7 +15,8 @@
 
     <modules>
         <module>discovery-server</module>
-        <module>service</module>
+        <module>service</module> <!-- First Service Module-->
+        <module>second</module> <!-- Second Service Module-->
         <module>client</module>
     </modules>
 
