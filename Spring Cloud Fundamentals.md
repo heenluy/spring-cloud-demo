@@ -149,7 +149,6 @@ Todas as configurações relacionadas à instância.
 <!-- Final do Módulo -->
 
 <br>
-<br>
 
 ### <b>Configuration in a Distributed System</b>
 Posso gerenciar as configurações de várias formas:
@@ -160,7 +159,24 @@ Posso gerenciar as configurações de várias formas:
 <b>Spring Cloud Config:</b>
 
 - Funciona no formato HTTP REST
-- Aceita vários formatos de arquivos de configuração: JSON*, Properties e YAML.
+- Retorna diferentes formatos de arquivos de configuração: JSON*, Properties e YAML.
 - Integração com vários Backend stores: Git*, SVN e FileSystem.
 
-
+### <b>Criando um Servidor de Configuração</b>
+1) Adicione a dependência do Spring Cloud Config Server:
+```
+    <dependency>
+		<groupId>org.springframework.cloud</groupId>
+		<artifactId>spring-cloud-config-server</artifactId>
+	</dependency>
+```
+2) Criar um repositório local ou remoto contendo os arquivos de configuração.
+3) Configure a Aplicação:
+```
+spring:
+    cloud:
+        config:
+            server:
+                git:
+                    uri: link do repositório(git)
+```

@@ -19,6 +19,7 @@
         <module>service</module> <!-- First Service Module-->
         <module>second</module> <!-- Second Service Module-->
         <module>client</module>
+		<module>config-client-app</module>
     </modules>
 
 	<properties>
