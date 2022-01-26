@@ -20,7 +20,9 @@ Pilares da Arquitetura de Microserviços:
 2) Service Application
 3) Client Application
 
-Criando um <b>Service Discovery</b> Simples:
+<br>
+
+### <b>Criando um Service Discovery Simples:</b>
 1) Adicione as dependências do Spring Cloud
 ```
 <dependency>
@@ -61,8 +63,9 @@ fetch-registry: false
 server:
     port: 8761
 ```
+<br>
 
-Criando um <b>Service App</b>:
+### <b>Criando um Service App:</b>
 
 1) Criar módulo ou app com a dependêcia:
 ```
@@ -89,12 +92,75 @@ eureka:
         service-url:
             defaultZone: http://localhost:8761/eureka
 ```
+<br>
 
-Para criar um <b>Client</b> basta fazer o mesmo processo do <b>Service</b>, porém com o registro desligado. Porquando o client não precisa se registrar, mas deve "descobrir" todos os serviços existentes.
+### <b>Criando um Client:</b>
+Para criar um Client basta fazer o mesmo processo do <i>Service</i>, porém com o registro desligado. Porquando o client não precisa se registrar, mas deve "descobrir" todos os serviços existentes.
 ```
 eureka:
     client:
         register-with-eureka: false
 ```
+<br>
 
-# Fazer as anotações sobre 'The Application Client'
+#### <b>Formas de consumir um Serviço:</b>
+1) Posso injetar o Eureka Client:
+```
+@Inject
+private EurekaClient client;
+
+InstanceInfo instanceInfo = 
+    client.getNextServerFromEureka("nome", false);
+
+String baseUrl = instanceInfo.getHomePageUrl();
+
+// Estou pegando o URL raíz do serviço. Posso, por exemplo, usar um RestTemplate para consumí-lo.
+```
+2) Posso injetar o Spring Discovery Client:
+```
+@Inject
+private DiscoveryClient client;
+
+List<ServiceInstance> instances = 
+    client.getInstances("nome");
+```
+<br>
+
+### <b>Áreas de Configuração do Eureka:</b>
+1) eureka.server.*
+<br>
+Todas as configurações relacionadas ao servidor.
+
+2) eureka.client.*
+<br>
+Todas as configurações relacionadas ao cliente.
+
+3) eureka.instance.*
+<br>
+Todas as configurações relacionadas à instância.
+<br>
+
+### <b>Saúde das Aplicações no Eureka:</b>
+- O Eureka envia sinais a cada serviço ou cliente, a fim de saber se estão bem.
+- Ele envia esses sinais a cada 30 segundos.
+- Se o serviço não responder por mais de 90 segundos, o Eureka remove esse serviço.
+- Pode ser configurado através da propriedade: eureka.client.heathcheck.enabled.
+
+<!-- Final do Módulo -->
+
+<br>
+<br>
+
+### <b>Configuration in a Distributed System</b>
+Posso gerenciar as configurações de várias formas:
+1) Spring Cloud Consul - ele também serve para esse fim.
+2) Spring Cloud Zookeeper - ele também serve para esse fim.
+3) Spring Cloud Config - foi projetado para esse fim.
+
+<b>Spring Cloud Config:</b>
+
+- Funciona no formato HTTP REST
+- Aceita vários formatos de arquivos de configuração: JSON*, Properties e YAML.
+- Integração com vários Backend stores: Git*, SVN e FileSystem.
+
+
