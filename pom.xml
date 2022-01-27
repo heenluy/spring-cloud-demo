@@ -14,10 +14,18 @@
     <packaging>pom</packaging>
 
     <modules>
+		<!-- Servers -->
         <module>discovery-server</module>
 		<module>config-server</module>
+		
+		<!-- Gateway -->
+		<module>gateway</module>
+
+		<!-- Services -->
         <module>service</module> <!-- First Service Module-->
         <module>second</module> <!-- Second Service Module-->
+
+		<!-- Clients -->
         <module>client</module>
 		<module>config-client-app</module>
     </modules>

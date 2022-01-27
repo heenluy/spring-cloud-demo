@@ -231,3 +231,13 @@ Atualize o valor de uma proprieda "@Value", colocando a seguinte anotação na c
 ```
 <b>Eu posso criptografar configurações. Estudar mais adiante...</b> 🔔<br>
 Por si só, a criptografia não garante a segurança da aplicação. Será, portanto, necessário ter o Spring Security protegendo os endpoints.
+
+<br>
+
+### <b>Mapping Services Using Intelligent Routing</b>
+Um Gateway oferece roteamento inteligente, monitoração e filtros.
+<br>
+
+Existem duas alternativas:
+- Netflix Zuul ("depreciada")
+- Spring Cloud Gateway (Atual)

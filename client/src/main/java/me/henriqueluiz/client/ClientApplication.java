@@ -29,7 +29,7 @@ public class ClientApplication {
 		SpringApplication.run(ClientApplication.class, args);
 	}
 
-	@RequestMapping("/")
+	@RequestMapping("/data")
 	public String callService() {
 		RestTemplate restTemplate = restTemplateBuilder.build();
 		InstanceInfo instanceInfo = client.getNextServerFromEureka("service", false);
