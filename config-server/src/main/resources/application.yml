@@ -3,7 +3,7 @@ server:
 
 spring:
     application:
-        name: some
+        name: configuration-server
     cloud:
         config:
             server:

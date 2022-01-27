@@ -1,11 +1,11 @@
 spring:
+    application:
+        name: config-client-app
     cloud:
         config:
             discovery:
                 enabled: true
-                serviceId: some
-    application:
-        name: config-client-app
+                serviceId: configuration-server
         
 eureka:
     client:

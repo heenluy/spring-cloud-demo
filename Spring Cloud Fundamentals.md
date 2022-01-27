@@ -4,6 +4,7 @@ Curso desenvolvido pela plataforma Pluralsight iniciado no dia 24 de Janeiro.
 #### <b>Minhas Anotações</b>
 - Existem outras alternativas ao Spring Cloud Netflix (o mais conhecido).
 - Adicionar Spring Actuator
+- Adicionar o Spring Security no Servidor(configuração ou discovery)
 
 #### Finding Services Using Service Discovery
 Discover Services Alternatives:
@@ -152,9 +153,9 @@ Todas as configurações relacionadas à instância.
 
 ### <b>Configuration in a Distributed System</b>
 Posso gerenciar as configurações de várias formas:
-1) Spring Cloud Consul - ele também serve para esse fim.
-2) Spring Cloud Zookeeper - ele também serve para esse fim.
-3) Spring Cloud Config - foi projetado para esse fim.
+1) Spring Cloud Consul - ele também serve para esse fim. 🔸
+2) Spring Cloud Zookeeper - ele também serve para esse fim. 🔸
+3) Spring Cloud Config - foi projetado para esse fim. ✌️
 
 <b>Spring Cloud Config:</b>
 
@@ -180,3 +181,53 @@ spring:
                 git:
                     uri: link do repositório(git)
 ```
+<br>
+
+### <b>Criando um Cliente que Consome o Servidor de Configurações</b>
+1) Adicionar a depêndencia principal:
+```
+    <dependency>
+		<groupId>org.springframework.cloud</groupId>
+		<artifactId>spring-cloud-starter-config</artifactId>
+	</dependency>
+```
+2) Para encontrar o servidor de configurações eu preciso da dependência:
+```
+    <dependency>
+		<groupId>org.springframework.cloud</groupId>
+		<artifactId>spring-cloud-starter-bootstrap</artifactId>
+	</dependency>
+```
+3) Criar uma configuração para o bootstrap:
+- Arquivo: bootstrap.yml
+```
+spring:
+    application:
+        name: config-client-app
+    cloud:
+        config:
+            discovery:
+                enabled: true
+                serviceId: configuration-server // Importante!
+```
+- Também precisa do URI do servidor de configurações:
+```
+eureka:
+    client:
+        server-url:
+            defaultZone: http://localhost:8761/eureka
+```
+
+### <b>Atualizando as Configurações</b>
+1) Faça as alterações no arquivo .git
+2) Faça o push para o servidor remoto
+3) Faça uma requisição do tipo POST para o servidor de configuração:
+```
+http://localhost:porta-do-servidor/refresh
+```
+Atualize o valor de uma proprieda "@Value", colocando a seguinte anotação na classe:
+```
+@RefreshScope
+```
+<b>Eu posso criptografar configurações. Estudar mais adiante...</b> 🔔<br>
+Por si só, a criptografia não garante a segurança da aplicação. Será, portanto, necessário ter o Spring Security protegendo os endpoints.
