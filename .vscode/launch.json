@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-DiscoveryServerApplication<discovery-server>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "me.henriqueluiz.discovery.DiscoveryServerApplication",
+            "projectName": "discovery-server",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-ConfigServerApplication<config-server>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "me.henriqueluiz.config.ConfigServerApplication",
+            "projectName": "config-server",
+            "args": ""
+        }
+    ]
+}
